@@ -1,19 +1,17 @@
 /// <reference path="../objects/cloud.ts" />
 /// <reference path="../objects/island.ts" />
 /// <reference path="../objects/plane.ts" />
-/// <reference path="../objects/bullet.ts" />
 /// <reference path="../objects/scoreboard.ts" />
 var managers;
 (function (managers) {
     // Collision Manager Class
     var Collision = (function () {
-        function Collision(plane, island, clouds, scoreboard, bullet) {
+        function Collision(plane, island, clouds, scoreboard) {
             this.clouds = [];
             this.plane = plane;
             this.island = island;
             this.clouds = clouds;
             this.scoreboard = scoreboard;
-            this.bullet = bullet;
         }
         // Utility method - Distance calculation between two points
         Collision.prototype.distance = function (p1, p2) {
@@ -26,21 +24,6 @@ var managers;
             yPoints = yPoints * yPoints;
             result = Math.sqrt(xPoints + yPoints);
             return result;
-        };
-        // check collision between bullet and cloud
-        Collision.prototype.bulletAndCloud = function (cloud) {
-            var p1 = new createjs.Point();
-            var p2 = new createjs.Point();
-            p1.x = this.bullet.image.x;
-            p1.y = this.bullet.image.y;
-            p2.x = cloud.image.x;
-            p2.y = cloud.image.y;
-            if (this.distance(p1, p2) < ((this.plane.height / 2) + (this.island.height / 2))) {
-                createjs.Sound.play("shot");
-                this.scoreboard.score += 50;
-                bullet.reset();
-                cloud.reset();
-            }
         };
         // check collision between plane and any cloud object
         Collision.prototype.planeAndCloud = function (cloud) {
@@ -72,9 +55,6 @@ var managers;
         };
         // Utility Function to Check Collisions
         Collision.prototype.update = function () {
-            for (var count = constants.CLOUD_NUM; count >= 0; count--) {
-                this.bulletAndCloud(this.clouds[count]);
-            }
             for (var count = constants.CLOUD_NUM; count >= 0; count--) {
                 this.planeAndCloud(this.clouds[count]);
             }

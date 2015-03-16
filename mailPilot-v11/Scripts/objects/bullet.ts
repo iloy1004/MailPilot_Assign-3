@@ -1,4 +1,5 @@
 ﻿/// <reference path="../managers/asset.ts" />
+
 module objects {
     // Island Class
     export class Bullet {
@@ -22,7 +23,7 @@ module objects {
             this.image.x = this.stage.mouseX;
             this.image.y = this.stage.mouseY;
 
-            this.dy = 5;
+            this.dy = 25;
 
             game.addChild(this.image);
 
@@ -30,21 +31,36 @@ module objects {
         }
 
         update() {
-
             this.image.x += this.dy;
-            if (this.image.x > this.stage.canvas.width) {
+            
+            if (this.image.x > this.stage.canvas.width + 160) {
+
+                console.log("image.x: " + this.image.x);
+                console.log("canvas.width: " + this.stage.canvas.width);
+
                 this.reset();
             }
         }
 
         reset() {
-            //this.image.x = this.stage.canvas.width;
-            //this.image.y = Math.floor(Math.random() * this.stage.canvas.height);
+
+            if (constants.BULLET_NUM > 0) {
+                constants.BULLET_NUM = constants.BULLET_NUM - 1;
+            }
             game.removeChild(this.image);
+            
+            console.log("reset bullet num: " + constants.BULLET_NUM);
         }
 
         destroy() {
+
+            if (constants.BULLET_NUM > 0) {
+                constants.BULLET_NUM -= 1;
+            }
+
             game.removeChild(this.image);
+            
+            console.log("destroy bullet num: " + constants.BULLET_NUM);
         }
     }
 

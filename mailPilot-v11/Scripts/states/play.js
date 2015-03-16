@@ -1,20 +1,21 @@
 /// <reference path="../objects/button.ts" />
 /// <reference path="../objects/cloud.ts" />
-/// <reference path="../objects/island.ts" />
 /// <reference path="../objects/label.ts" />
 /// <reference path="../objects/ocean.ts" />
+/// <reference path="../objects/island.ts" />
 /// <reference path="../objects/plane.ts" />
 /// <reference path="../objects/bullet.ts" />
 /// <reference path="../objects/scoreboard.ts" />
-/// <reference path="../managers/collision.ts" />
 /// <reference path="../managers/asset.ts" />
+/// <reference path="../managers/collision.ts" />
+/// <reference path="../managers/bulletcollision.ts" />
 var states;
 (function (states) {
     function playState() {
+        //bullet.update();
         ocean.update();
         island.update();
         plane.update();
-        bullet.update();
         for (var count = constants.CLOUD_NUM; count >= 0; count--) {
             clouds[count].update();
         }
@@ -28,8 +29,24 @@ var states;
             currentState = constants.GAME_OVER_STATE;
             changeState(currentState);
         }
+        if (constants.BULLET_NUM > 0) {
+            for (var count = constants.BULLET_NUM; count >= 0; count--) {
+                bullets[count].update();
+            }
+            bulletCollision.update();
+        }
     }
     states.playState = playState;
+    function shoot() {
+        //constants.BULLET_NUM += 1;
+        for (var count = constants.BULLET_NUM; count >= 0; count--) {
+            bullets[count] = new objects.Bullet(stage, game);
+        }
+        constants.BULLET_NUM += 1;
+        // Instantiate Collision Manager
+        bulletCollision = new managers.bulletCollision(clouds, scoreboard, bullets);
+        console.log("bullet num : " + constants.BULLET_NUM);
+    }
     // play state Function
     function play() {
         // Declare new Game Container
@@ -38,22 +55,19 @@ var states;
         ocean = new objects.Ocean(stage, game);
         island = new objects.Island(stage, game);
         plane = new objects.Plane(stage, game);
-        bullet = new objects.Bullet(stage, game);
+        plane.image.addEventListener("click", shoot);
         // Show Cursor
-        stage.cursor = "hand";
+        stage.cursor = "default";
         for (var count = constants.CLOUD_NUM; count >= 0; count--) {
             clouds[count] = new objects.Cloud(stage, game);
         }
         // Display Scoreboard
         scoreboard = new objects.Scoreboard(stage, game);
         // Instantiate Collision Manager
-        collision = new managers.Collision(plane, island, clouds, scoreboard, bullet);
+        collision = new managers.Collision(plane, island, clouds, scoreboard);
+        //game.addEventListener("click", shoot);
         stage.addChild(game);
-        plane.image.addEventListener("click", shoot);
     }
     states.play = play;
-    function shoot() {
-        bullet.update();
-    }
 })(states || (states = {}));
 //# sourceMappingURL=play.js.map

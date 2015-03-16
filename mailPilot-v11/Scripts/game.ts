@@ -1,19 +1,22 @@
 ﻿/// <reference path="constants.ts" />
 /// <reference path="managers/asset.ts" />
+/// <reference path="managers/collision.ts" />
+/// <reference path="managers/bulletcollision.ts" />
+
+/// <reference path="objects/bullet.ts" />
+/// <reference path="objects/button.ts" />
 /// <reference path="objects/cloud.ts" />
 /// <reference path="objects/island.ts" />
+/// <reference path="objects/label.ts" />
 /// <reference path="objects/ocean.ts" />
 /// <reference path="objects/plane.ts" />
-/// <reference path="objects/bullet.ts" />
-
 /// <reference path="objects/scoreboard.ts" />
-/// <reference path="objects/label.ts" />
-/// <reference path="objects/button.ts" />
-/// <reference path="managers/collision.ts" />
-/// <reference path="managers/asset.ts" />
-/// <reference path="states/play.ts" />
-/// <reference path="states/menu.ts" />
+
 /// <reference path="states/gameover.ts" />
+/// <reference path="states/menu.ts" />
+/// <reference path="states/play.ts" />
+/// <reference path="states/instruction.ts" />
+
 
 // Mail Pilot Version 11 - Added basic state machine structure - Added Button and Label classes
 // Changed online repo
@@ -25,14 +28,19 @@ var game: createjs.Container;
 var ocean: objects.Ocean;
 var plane: objects.Plane;
 var island: objects.Island;
-var bullet: objects.Bullet;
+//var bullet: objects.Bullet;
+var bullets = []; // bullets array;
+var bulletNumber: number;
 var clouds = []; // Clouds array;
 var scoreboard: objects.Scoreboard;
 
 var collision: managers.Collision;
+var bulletCollision: managers.bulletCollision;
 
 var tryAgain: objects.Button;
 var playButton: objects.Button;
+var msgButton: objects.Button;
+var backButton: objects.Button;
 
 var currentState: number;
 var currentStateFunction;
@@ -54,6 +62,7 @@ function init(): void {
     optimizeForMobile();
 
     currentState = constants.MENU_STATE;
+    bulletNumber = constants.BULLET_NUM;
     changeState(currentState);
 
    
@@ -92,6 +101,12 @@ function changeState(state: number): void {
             currentStateFunction = states.gameOverState;
             // instantiate game over screen
             states.gameOver();
+            break;
+
+        case constants.MSG_STATE:
+            currentStateFunction = states.instructionState;
+            // instruction screen
+            states.instruction();
             break;
     }
 }

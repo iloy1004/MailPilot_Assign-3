@@ -13,17 +13,18 @@
     var spriteSheetData = {
         "images": ["assets/images/atlas1.png"],
         "frames": [
-            [5, 3, 193, 470], //plane
-            [212, 3, 410,90], //instructionsButton
-            [226, 99, 348, 90], //playButton
-            [267, 192, 332, 90], //tryAgainButton
-            [238, 306, 103, 62], //cloud
-            [348, 306, 103, 62], //cloud2
-            [492, 306, 103, 62], //helpPlane
+            [5, 3, 193, 402], //plane
+            [212, 6, 410,90], //instructionsButton
+            [226, 102, 348, 90], //playButton
+            [267, 200, 332, 90], //tryAgainButton
+            [226, 294, 348, 90], //backButton
+            [5, 409, 103, 62], //cloud
+            [123, 409, 103, 62], //cloud2
+            [507, 409, 103, 62], //helpPlane
             [238, 411, 74, 62], //island
-            [348, 411, 74, 62], //island2
-            [458, 423, 21, 26], //heart
-            [492, 416, 53, 53], //pooh
+            [320, 411, 74, 62], //island2
+            [406, 436, 21, 26], //heart
+            [438, 416, 53, 53], //poo
             [626, 16, 160, 64], //1shot
             [626, 92, 180, 123], //3shot
             [626, 226, 258, 242] //boss
@@ -33,16 +34,17 @@
             "instructionsButton": [1],
             "playButton": [2],
             "tryAgainButton": [3],
-            "attackBird1": [4],
-            "attackBird2": [5],
-            "helpBird": [6],
-            "bonus1": [7],
-            "bonus2": [8],
-            "heart": [9],
-            "pooh": [10],
-            "1shot": [11],
-            "3shot": [12],
-            "boss":[13]
+            "backButton": [4],
+            "attackBird1": [5],
+            "attackBird2": [6],
+            "helpBird": [7],
+            "bonus1": [8],
+            "bonus2": [9],
+            "heart": [10],
+            "pooh": [11],
+            "1shot": [12],
+            "3shot": [13],
+            "boss":[14]
         }
     }
 

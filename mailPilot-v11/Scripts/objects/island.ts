@@ -24,7 +24,7 @@ module objects {
 
             game.addChild(this.image);
         }
-
+         
         update() {
             this.image.x -= this.dy;
             if (this.image.x < 0) {
