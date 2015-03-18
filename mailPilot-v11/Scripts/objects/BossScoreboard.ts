@@ -54,7 +54,7 @@
             this.label.text = this.labelText;
             this.label.y = 20;
 
-            this.labelText2 = "* Boss's HP:            * Score: " + this.score.toString();
+            this.labelText2 = "* Boss's HP:           * Score: " + this.score.toString();
             this.label2.text = this.labelText2;
             this.label2.x = 230;
             this.label2.y = 20;

@@ -13,6 +13,10 @@ var states;
         plane.destroy();
         game.removeAllChildren();
         game.removeAllEventListeners();
+        constants.PLANE_LIVES = 5;
+        constants.CURRENT_PLANE_HP = constants.PLANE_HP;
+        constants.CURRENT_BOSS_HP = constants.BOSS_HP;
+        constants.CURRENT_SCORE = 0;
         currentState = constants.PLAY_STATE;
         changeState(currentState);
     }

@@ -48,7 +48,7 @@ module managers {
             p2.y = poo.image.y;
             if (this.distance(p1, p2) < ((this.plane.height / 2) + (poo.height / 2))) {
                 createjs.Sound.play("thunder");
-                this.scoreboard.plane_hp -= 2;
+                this.scoreboard.plane_hp -= 5;
                 poo.reset();
             }
         }
