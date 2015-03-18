@@ -20,13 +20,13 @@ var objects;
         Bullet.prototype.update = function () {
             this.image.x += this.dy;
             if (this.image.x > this.stage.canvas.width) {
-                game.removeChild(this.image);
                 this.isBullet(constants.IS_BULLET);
+                game.removeChild(this.image);
             }
         };
         Bullet.prototype.reset = function () {
-            game.removeChild(this.image);
             this.isBullet(constants.IS_BULLET);
+            game.removeChild(this.image);
         };
         Bullet.prototype.destroy = function () {
             this.isBullet(constants.IS_BULLET);

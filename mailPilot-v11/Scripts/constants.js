@@ -11,12 +11,14 @@ var constants;
     constants.IS_BULLET = false;
     constants.CLOUD_NUM = 3;
     constants.POO_NUM = 3;
-    constants.LABEL_FONT = "40px Consolas";
-    constants.LABEL_COLOUR = "#FFFF00";
+    constants.LABEL_FONT = "40px Maven Pro";
+    constants.LABEL_COLOUR = "#F9DCF3";
     // Current Game values
     constants.PLANE_LIVES = 5;
     constants.CURRENT_SCORE = 0;
     constants.BOSS_HP = 1000;
-    constants.PLANE_HP = 1000;
+    constants.PLANE_HP = 2000;
+    constants.CURRENT_PLANE_HP = 2000;
+    constants.CURRENT_BOSS_HP = 1000;
 })(constants || (constants = {}));
 //# sourceMappingURL=constants.js.map

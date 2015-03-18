@@ -30,12 +30,12 @@ var objects;
         };
         Cloud.prototype.reset = function () {
             this.image.y = Math.floor(Math.random() * this.stage.canvas.height);
-            this.dy = Math.floor(Math.random() * -3) + Math.floor(Math.random() * 3);
-            this.dx = Math.floor(Math.random() * 5 + 5);
+            this.dy = Math.floor(Math.random() * -5) + Math.floor(Math.random() * 5);
+            this.dx = Math.floor(Math.random() * 7 + 7);
             this.image.x = this.stage.canvas.width;
             this.image2.y = Math.floor(Math.random() * this.stage.canvas.height);
-            this.dy = Math.floor(Math.random() * -2) + Math.floor(Math.random() * 2);
-            this.dx = Math.floor(Math.random() * 4 + 4);
+            this.dy = Math.floor(Math.random() * -4) + Math.floor(Math.random() * 4);
+            this.dx = Math.floor(Math.random() * 6 + 6);
             this.image2.x = this.stage.canvas.width;
         };
         Cloud.prototype.destroy = function () {

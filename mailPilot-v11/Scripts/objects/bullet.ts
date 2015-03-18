@@ -30,17 +30,17 @@ module objects {
 
         update() {
             this.image.x += this.dy;
-            
+
             if (this.image.x > this.stage.canvas.width) {
-                game.removeChild(this.image);
                 this.isBullet(constants.IS_BULLET);
+                game.removeChild(this.image);
                 //this.reset();
             }
         }
 
         reset() {
-            game.removeChild(this.image);
             this.isBullet(constants.IS_BULLET);
+            game.removeChild(this.image);
         }
 
         destroy() {

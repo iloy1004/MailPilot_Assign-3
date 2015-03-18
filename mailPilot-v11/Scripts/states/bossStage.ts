@@ -20,7 +20,7 @@ module states {
         ocean.update();
 
         plane.update();
-        
+
         for (var count = constants.POO_NUM; count >= 0; count--) {
             poos[count].update();
         }
@@ -60,14 +60,13 @@ module states {
     function shoot() {
 
         if (!constants.IS_BULLET) {
-
-            constants.IS_BULLET = true;
-
             // Create multiple bullets
             bullet = new objects.SuperBullet(stage, game);
 
             // Instantiate Collision Manager
             bulletBossCollision = new managers.bulletBossCollision(bossBird, bossScore, bullet, poos);
+
+            constants.IS_BULLET = true;
         }
     }
 
@@ -100,9 +99,10 @@ module states {
         // Instantiate Collision Manager
         bossCollision = new managers.bossCollision(plane, bossBird, poos, bossScore);
 
-
+        
         //game.addEventListener("click", shoot);
         stage.addChild(game);
+        //stage.addEventListener("click", shoot);
     }
 
 

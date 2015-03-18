@@ -13,7 +13,7 @@ module managers {
         private clouds = [];
         private scoreboard: objects.Scoreboard;
 
-        constructor(clouds, scoreboard: objects.Scoreboard, bullet:objects.Bullet) {
+        constructor(clouds, scoreboard: objects.Scoreboard, bullet: objects.Bullet) {
             this.clouds = clouds;
             this.scoreboard = scoreboard;
             this.bullet = bullet;
@@ -52,6 +52,7 @@ module managers {
                 this.scoreboard.score += 50;
                 //bullet.reset();
                 game.removeChild(bullet.image);
+                constants.IS_BULLET = false;
                 cloud.reset();
             }
         }

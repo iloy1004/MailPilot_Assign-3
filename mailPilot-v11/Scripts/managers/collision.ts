@@ -47,7 +47,7 @@ module managers {
             p2.y = cloud.image.y;
             if (this.distance(p1, p2) < ((this.plane.height / 2) + (cloud.height / 2))) {
                 createjs.Sound.play("thunder");
-                this.scoreboard.lives -= 1;
+                this.scoreboard.hp -= 50;
                 cloud.reset();
             }
         }

@@ -22,9 +22,9 @@ module states {
         //bullet.update();
         ocean.update();
         island.update();
-        
+
         plane.update();
-        
+
 
         for (var count = constants.CLOUD_NUM; count >= 0; count--) {
             clouds[count].update();
@@ -33,7 +33,7 @@ module states {
         collision.update();
         scoreboard.update();
 
-        if (scoreboard.lives <= 0) {
+        if (scoreboard.hp <= 0) {
             stage.removeChild(game);
             plane.destroy();
 
@@ -47,13 +47,13 @@ module states {
         if (scoreboard.score > 300) {
 
             stage.removeChild(game);
-            
+
             for (var count = constants.CLOUD_NUM; count >= 0; count--) {
                 clouds[count].destroy();
             }
 
             constants.CURRENT_SCORE = scoreboard.score;
-            constants.PLANE_LIVES = scoreboard.lives;
+            constants.CURRENT_PLANE_HP = scoreboard.hp;
 
             currentState = constants.BOSS_STATE;
             changeState(currentState);
@@ -62,19 +62,18 @@ module states {
         if (constants.IS_BULLET) {
             bullet.update();
             bulletCollision.update();
-        }        
+        }
     }
 
     function shoot() {
         if (!constants.IS_BULLET) {
-
-            constants.IS_BULLET = true;
 
             // Create multiple bullets
             bullet = new objects.Bullet(stage, game);
 
             // Instantiate Collision Manager
             bulletCollision = new managers.bulletCollision(clouds, scoreboard, bullet);
+            constants.IS_BULLET = true;
         }
     }
 
@@ -101,14 +100,12 @@ module states {
         // Display Scoreboard
         scoreboard = new objects.Scoreboard(stage, game);
 
-        
+
         // Instantiate Collision Manager
         collision = new managers.Collision(plane, island, clouds, scoreboard);
 
-        
-        //game.addEventListener("click", shoot);
         stage.addChild(game);
     }
 
-   
+
 }
