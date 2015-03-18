@@ -9,14 +9,14 @@ module managers {
     export class bulletCollision {
 
         // class variables
-        private bullets = [];
+        private bullet: objects.Bullet;
         private clouds = [];
         private scoreboard: objects.Scoreboard;
 
-        constructor(clouds, scoreboard: objects.Scoreboard, bullets) {
+        constructor(clouds, scoreboard: objects.Scoreboard, bullet:objects.Bullet) {
             this.clouds = clouds;
             this.scoreboard = scoreboard;
-            this.bullets = bullets;
+            this.bullet = bullet;
         }
 
         // Utility method - Distance calculation between two points
@@ -50,7 +50,8 @@ module managers {
             if (this.distance(p1, p2) < ((bullet.height / 2) + (cloud.height / 2))) {
                 createjs.Sound.play("shot");
                 this.scoreboard.score += 50;
-                bullet.reset();
+                //bullet.reset();
+                game.removeChild(bullet.image);
                 cloud.reset();
             }
         }
@@ -59,10 +60,8 @@ module managers {
         // Utility Function to Check Collisions
         update() {
 
-            for (var count = constants.BULLET_NUM; count >= 0; count--) {
-                for (var i = constants.CLOUD_NUM; i >= 0; i--) {
-                    this.bulletAndCloud(this.clouds[i], this.bullets[count]);
-                }
+            for (var i = constants.CLOUD_NUM; i >= 0; i--) {
+                this.bulletAndCloud(this.clouds[i], this.bullet);
             }
         }
     }

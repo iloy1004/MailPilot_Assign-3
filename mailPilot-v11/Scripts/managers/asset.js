@@ -40,7 +40,7 @@ var managers;
             "bonus1": [8],
             "bonus2": [9],
             "heart": [10],
-            "pooh": [11],
+            "poo": [11],
             "1shot": [12],
             "3shot": [13],
             "boss": [14]

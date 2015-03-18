@@ -6,16 +6,20 @@
 /// <reference path="../objects/ocean.ts" />
 /// <reference path="../objects/plane.ts" />
 /// <reference path="../objects/scoreboard.ts" />
+/// <reference path="../objects/bossscoreboard.ts" />
+
 module states {
     export function gameOverState() {
         ocean.update();
     }
+
 
     // Restart Game when Try Again Button is clicked
     export function tryAgainClicked(event: MouseEvent) {
         stage.removeChild(game);
         game.removeAllChildren();
         game.removeAllEventListeners();
+        constants.PLANE_LIVES = 5;
         currentState = constants.PLAY_STATE;
         changeState(currentState);
     }
@@ -42,15 +46,26 @@ module states {
         // Display Final Score Label
         finalScoreLabel = new objects.Label(stage.canvas.width / 2, 120, "FINAL SCORE");
         game.addChild(finalScoreLabel);
-
+        
         // Display Final Score
-        finalScore = new objects.Label(stage.canvas.width / 2, 160, scoreboard.score.toString());
+        finalScore = new objects.Label(stage.canvas.width / 2, 160, constants.CURRENT_SCORE + "");
+
         game.addChild(finalScore);
 
         // Display Try Again Button
-        tryAgain = new objects.Button(stage.canvas.width / 2, 300, "tryAgainButton");
+        tryAgain = new objects.Button(stage.canvas.width / 2, 280, "tryAgainButton");
         game.addChild(tryAgain);
         tryAgain.addEventListener("click", tryAgainClicked);
+
+        // Display Try Again Button
+        backButton = new objects.Button(stage.canvas.width / 2, 360, "backButton");
+        game.addChild(backButton);
+        backButton.addEventListener("click", backClicked);
+
+        // Display Play Again Button
+        msgButton = new objects.Button(stage.canvas.width / 2, 430, "instructionsButton");
+        game.addChild(msgButton);
+        msgButton.addEventListener("click", msgButtonClicked);
 
         stage.addChild(game);
 

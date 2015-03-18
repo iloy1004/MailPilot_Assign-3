@@ -2,6 +2,8 @@
 /// <reference path="managers/asset.ts" />
 /// <reference path="managers/collision.ts" />
 /// <reference path="managers/bulletcollision.ts" />
+/// <reference path="managers/bosscollision.ts" />
+/// <reference path="managers/bulletbosscollision.ts" />
 
 /// <reference path="objects/bullet.ts" />
 /// <reference path="objects/button.ts" />
@@ -11,12 +13,18 @@
 /// <reference path="objects/ocean.ts" />
 /// <reference path="objects/plane.ts" />
 /// <reference path="objects/scoreboard.ts" />
+/// <reference path="objects/boss.ts" />
+/// <reference path="objects/superbullet.ts" />
+/// <reference path="objects/bossscoreboard.ts" />
+/// <reference path="objects/poo.ts" />
+
 
 /// <reference path="states/gameover.ts" />
 /// <reference path="states/menu.ts" />
 /// <reference path="states/play.ts" />
 /// <reference path="states/instruction.ts" />
-
+/// <reference path="states/bossstage.ts" />
+/// <reference path="states/win.ts" />
 
 // Mail Pilot Version 11 - Added basic state machine structure - Added Button and Label classes
 // Changed online repo
@@ -29,13 +37,18 @@ var ocean: objects.Ocean;
 var plane: objects.Plane;
 var island: objects.Island;
 //var bullet: objects.Bullet;
-var bullets = []; // bullets array;
-var bulletNumber: number;
+var bullet: objects.Bullet;
+var isBullet: boolean;
 var clouds = []; // Clouds array;
+var poos = []; // poo array;
 var scoreboard: objects.Scoreboard;
+var bossScore: objects.BossScoreboard;
+var bossBird: objects.Boss;
 
 var collision: managers.Collision;
+var bossCollision: managers.bossCollision;
 var bulletCollision: managers.bulletCollision;
+var bulletBossCollision: managers.bulletBossCollision;
 
 var tryAgain: objects.Button;
 var playButton: objects.Button;
@@ -62,7 +75,7 @@ function init(): void {
     optimizeForMobile();
 
     currentState = constants.MENU_STATE;
-    bulletNumber = constants.BULLET_NUM;
+    isBullet = constants.IS_BULLET;
     changeState(currentState);
 
    
@@ -107,6 +120,18 @@ function changeState(state: number): void {
             currentStateFunction = states.instructionState;
             // instruction screen
             states.instruction();
+            break;
+
+        case constants.BOSS_STATE:
+            currentStateFunction = states.bossState;
+            // instruction screen
+            states.boss();
+            break;
+
+        case constants.WIN_STATE:
+            currentStateFunction = states.winState;
+            // instruction screen
+            states.win();
             break;
     }
 }

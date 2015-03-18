@@ -4,7 +4,6 @@ module objects {
     // Island Class
     export class Bullet {
         image: createjs.Sprite;
-        image2: createjs.Sprite;
         stage: createjs.Stage;
         game: createjs.Container;
         height: number;
@@ -15,7 +14,6 @@ module objects {
             this.stage = stage;
             this.game = game;
             this.image = new createjs.Sprite(managers.Assets.atlas, "1shot");
-            this.image2 = new createjs.Sprite(managers.Assets.atlas, "3shot");
             this.width = this.image.getBounds().width;
             this.height = this.image.getBounds().height;
             this.image.regX = this.width / 2;
@@ -33,34 +31,31 @@ module objects {
         update() {
             this.image.x += this.dy;
             
-            if (this.image.x > this.stage.canvas.width + 160) {
-
-                console.log("image.x: " + this.image.x);
-                console.log("canvas.width: " + this.stage.canvas.width);
-
-                this.reset();
+            if (this.image.x > this.stage.canvas.width) {
+                game.removeChild(this.image);
+                this.isBullet(constants.IS_BULLET);
+                //this.reset();
             }
         }
 
         reset() {
-
-            if (constants.BULLET_NUM > 0) {
-                constants.BULLET_NUM = constants.BULLET_NUM - 1;
-            }
             game.removeChild(this.image);
-            
-            console.log("reset bullet num: " + constants.BULLET_NUM);
+            this.isBullet(constants.IS_BULLET);
         }
 
         destroy() {
-
-            if (constants.BULLET_NUM > 0) {
-                constants.BULLET_NUM -= 1;
-            }
-
+            this.isBullet(constants.IS_BULLET);
             game.removeChild(this.image);
-            
-            console.log("destroy bullet num: " + constants.BULLET_NUM);
+        }
+
+        // check whether bullet is existing in the canvas, and swtich the value true and false
+        isBullet(isB: boolean) {
+            if (isB) {
+                constants.IS_BULLET = false;
+            }
+            else {
+                constants.IS_BULLET = true;
+            }
         }
     }
 

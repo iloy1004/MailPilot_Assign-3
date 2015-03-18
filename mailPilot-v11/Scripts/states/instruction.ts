@@ -54,19 +54,54 @@ module states {
         stage.cursor = "default";
 
         // Display game images and details
-        attackBird1.x = (stage.canvas.width / 2) - 100;
-        attackBird1.y = 100;
+        // About enermy
+        attackBird1.x = (stage.canvas.width / 6) - 100;
+        attackBird1.y = 50;
         game.addChild(attackBird1);
 
-        attackBird2.x = (stage.canvas.width / 2);
-        attackBird2.y = 100;
+        attackBird2.x = (stage.canvas.width / 6);
+        attackBird2.y = 50;
         game.addChild(attackBird2);
 
-        msgBird = new objects.Label((stage.canvas.width / 2)+100, 100, "Your enemy. You'll lose your life when hit them. Just avoid or shoot them");
+        msgBird = new createjs.Text("Your enemy. You'll lose your life when hit them.\nJust avoid or shoot them", "30px Arial", "#000000");
+        msgBird.x = (stage.canvas.width / 6) + 180;
+        msgBird.y = 50;
         game.addChild(msgBird);
 
+        // About bonus
+        bonus1.x = (stage.canvas.width / 6) - 100;
+        bonus1.y = 150;
+        game.addChild(bonus1);
+
+        msgBonus = new createjs.Text("Your bonus. You'll get the score when hit them.\nTry hit them as much as you can!", "30px Arial", "#000000");
+        msgBonus.x = (stage.canvas.width / 6) + 180;
+        msgBonus.y = 150;
+        game.addChild(msgBonus);
+
+
+        // About bullet
+        shot1.x = (stage.canvas.width / 6) - 100;
+        shot1.y = 250;
+        game.addChild(shot1);
+
+        msgShot = new createjs.Text("Your bullet. You can kill the birds when click your balloon.\nShoot! and go go!", "30px Arial", "#000000");
+        msgShot.x = (stage.canvas.width / 6) + 180;
+        msgShot.y = 250;
+        game.addChild(msgShot);
+
+        // About boss
+        boss.x = (stage.canvas.width / 6) - 100;
+        boss.y = 350;
+        game.addChild(boss);
+
+        msgBoss = new createjs.Text("The boss bird. You need some special bullet!.\nShoot! and go go!", "30px Arial", "#000000");
+        msgBoss.x = (stage.canvas.width / 6) + 180;
+        msgBoss.y = 350;
+        game.addChild(msgBoss);
+
+
         // Display Try Again Button
-        backButton = new objects.Button(stage.canvas.width / 2, 300, "backButton");
+        backButton = new objects.Button(stage.canvas.width / 2, 600, "backButton");
         game.addChild(backButton);
         backButton.addEventListener("click", backClicked);
 

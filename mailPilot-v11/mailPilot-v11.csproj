@@ -128,8 +128,12 @@
     <TypeScriptCompile Include="Scripts\lib\easeljs.d.ts" />
     <TypeScriptCompile Include="Scripts\game.ts" />
     <TypeScriptCompile Include="Scripts\managers\asset.ts" />
+    <TypeScriptCompile Include="Scripts\managers\bossCollision.ts" />
+    <TypeScriptCompile Include="Scripts\managers\bulletBossCollision.ts" />
     <TypeScriptCompile Include="Scripts\managers\bulletCollision.ts" />
     <TypeScriptCompile Include="Scripts\managers\collision.ts" />
+    <TypeScriptCompile Include="Scripts\objects\boss.ts" />
+    <TypeScriptCompile Include="Scripts\objects\BossScoreboard.ts" />
     <TypeScriptCompile Include="Scripts\objects\bullet.ts" />
     <TypeScriptCompile Include="Scripts\objects\button.ts" />
     <TypeScriptCompile Include="Scripts\objects\cloud.ts" />
@@ -137,14 +141,18 @@
     <TypeScriptCompile Include="Scripts\objects\label.ts" />
     <TypeScriptCompile Include="Scripts\objects\ocean.ts" />
     <TypeScriptCompile Include="Scripts\objects\plane.ts" />
+    <TypeScriptCompile Include="Scripts\objects\poo.ts" />
     <TypeScriptCompile Include="Scripts\objects\scoreboard.ts" />
     <TypeScriptCompile Include="Scripts\lib\preloadjs.d.ts" />
     <TypeScriptCompile Include="Scripts\lib\soundjs.d.ts" />
+    <TypeScriptCompile Include="Scripts\objects\superBullet.ts" />
+    <TypeScriptCompile Include="Scripts\states\bossStage.ts" />
     <TypeScriptCompile Include="Scripts\states\gameover.ts" />
     <TypeScriptCompile Include="Scripts\states\instruction.ts" />
     <TypeScriptCompile Include="Scripts\states\menu.ts" />
     <TypeScriptCompile Include="Scripts\states\play.ts" />
     <TypeScriptCompile Include="Scripts\lib\tweenjs.d.ts" />
+    <TypeScriptCompile Include="Scripts\states\win.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

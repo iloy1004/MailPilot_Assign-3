@@ -1,114 +1,109 @@
 ﻿/// <reference path="../objects/button.ts" />
-/// <reference path="../objects/cloud.ts" />
 
 /// <reference path="../objects/label.ts" />
 /// <reference path="../objects/ocean.ts" />
-/// <reference path="../objects/island.ts" />
-/// <reference path="../objects/plane.ts" />
-/// <reference path="../objects/bullet.ts" />
-/// <reference path="../objects/scoreboard.ts" />
-/// <reference path="../objects/bossscoreboard.ts" />
-
 /// <reference path="../objects/boss.ts" />
+/// <reference path="../objects/poo.ts" />
+
+/// <reference path="../objects/plane.ts" />
+/// <reference path="../objects/bossscoreboard.ts" />
 /// <reference path="../objects/superbullet.ts" />
 
 /// <reference path="../managers/asset.ts" />
-/// <reference path="../managers/collision.ts" />
-/// <reference path="../managers/bulletcollision.ts" />
 /// <reference path="../managers/bosscollision.ts" />
+/// <reference path="../managers/bulletbosscollision.ts" />
+
 
 module states {
-    export function playState() {
+    export function bossState() {
         //bullet.update();
         ocean.update();
-        island.update();
-        
+
         plane.update();
         
-
-        for (var count = constants.CLOUD_NUM; count >= 0; count--) {
-            clouds[count].update();
+        for (var count = constants.POO_NUM; count >= 0; count--) {
+            poos[count].update();
         }
 
-        collision.update();
-        scoreboard.update();
+        bossCollision.update();
+        bossScore.update();
+        bossBird.update();
 
-        if (scoreboard.lives <= 0) {
+        if (bossScore.plane_hp <= 0) {
             stage.removeChild(game);
             plane.destroy();
 
             game.removeAllChildren();
             game.removeAllEventListeners();
-            constants.CURRENT_SCORE = scoreboard.score;
+            constants.CURRENT_SCORE = bossScore.score;
             currentState = constants.GAME_OVER_STATE;
             changeState(currentState);
         }
 
-        if (scoreboard.score > 300) {
-
+        if (bossScore.boss_hp <= 0) {
             stage.removeChild(game);
-            
-            for (var count = constants.CLOUD_NUM; count >= 0; count--) {
-                clouds[count].destroy();
-            }
+            plane.destroy();
 
-            constants.CURRENT_SCORE = scoreboard.score;
-            constants.PLANE_LIVES = scoreboard.lives;
-
-            currentState = constants.BOSS_STATE;
+            game.removeAllChildren();
+            game.removeAllEventListeners();
+            constants.CURRENT_SCORE = bossScore.score;
+            currentState = constants.WIN_STATE;
             changeState(currentState);
         }
 
         if (constants.IS_BULLET) {
             bullet.update();
-            bulletCollision.update();
-        }        
+            bulletBossCollision.update();
+        }
     }
 
     function shoot() {
+
         if (!constants.IS_BULLET) {
 
             constants.IS_BULLET = true;
 
             // Create multiple bullets
-            bullet = new objects.Bullet(stage, game);
+            bullet = new objects.SuperBullet(stage, game);
 
             // Instantiate Collision Manager
-            bulletCollision = new managers.bulletCollision(clouds, scoreboard, bullet);
+            bulletBossCollision = new managers.bulletBossCollision(bossBird, bossScore, bullet, poos);
         }
     }
 
     // play state Function
-    export function play(): void {
+    export function boss(): void {
 
         // Declare new Game Container
         game = new createjs.Container();
 
         // Instantiate Game Objects
         ocean = new objects.Ocean(stage, game);
-        island = new objects.Island(stage, game);
         plane = new objects.Plane(stage, game);
         plane.image.addEventListener("click", shoot);
+
+
+
+        bossBird = new objects.Boss(stage, game);
 
         // Show Cursor
         stage.cursor = "default";
 
+        // Display Scoreboard
+        bossScore = new objects.BossScoreboard(stage, game);
+
         // Create multiple clouds
-        for (var count = constants.CLOUD_NUM; count >= 0; count--) {
-            clouds[count] = new objects.Cloud(stage, game);
+        for (var count = constants.POO_NUM; count >= 0; count--) {
+            poos[count] = new objects.Poo(stage, game);
         }
 
-        // Display Scoreboard
-        scoreboard = new objects.Scoreboard(stage, game);
-
-        
         // Instantiate Collision Manager
-        collision = new managers.Collision(plane, island, clouds, scoreboard);
+        bossCollision = new managers.bossCollision(plane, bossBird, poos, bossScore);
 
-        
+
         //game.addEventListener("click", shoot);
         stage.addChild(game);
     }
 
-   
+
 }

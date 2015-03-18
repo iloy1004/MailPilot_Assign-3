@@ -6,9 +6,13 @@
 /// <reference path="../objects/plane.ts" />
 /// <reference path="../objects/bullet.ts" />
 /// <reference path="../objects/scoreboard.ts" />
+/// <reference path="../objects/bossscoreboard.ts" />
+/// <reference path="../objects/boss.ts" />
+/// <reference path="../objects/superbullet.ts" />
 /// <reference path="../managers/asset.ts" />
 /// <reference path="../managers/collision.ts" />
 /// <reference path="../managers/bulletcollision.ts" />
+/// <reference path="../managers/bosscollision.ts" />
 var states;
 (function (states) {
     function playState() {
@@ -26,26 +30,34 @@ var states;
             plane.destroy();
             game.removeAllChildren();
             game.removeAllEventListeners();
+            constants.CURRENT_SCORE = scoreboard.score;
             currentState = constants.GAME_OVER_STATE;
             changeState(currentState);
         }
-        if (constants.BULLET_NUM > 0) {
-            for (var count = constants.BULLET_NUM; count >= 0; count--) {
-                bullets[count].update();
+        if (scoreboard.score > 300) {
+            stage.removeChild(game);
+            for (var count = constants.CLOUD_NUM; count >= 0; count--) {
+                clouds[count].destroy();
             }
+            constants.CURRENT_SCORE = scoreboard.score;
+            constants.PLANE_LIVES = scoreboard.lives;
+            currentState = constants.BOSS_STATE;
+            changeState(currentState);
+        }
+        if (constants.IS_BULLET) {
+            bullet.update();
             bulletCollision.update();
         }
     }
     states.playState = playState;
     function shoot() {
-        //constants.BULLET_NUM += 1;
-        for (var count = constants.BULLET_NUM; count >= 0; count--) {
-            bullets[count] = new objects.Bullet(stage, game);
+        if (!constants.IS_BULLET) {
+            constants.IS_BULLET = true;
+            // Create multiple bullets
+            bullet = new objects.Bullet(stage, game);
+            // Instantiate Collision Manager
+            bulletCollision = new managers.bulletCollision(clouds, scoreboard, bullet);
         }
-        constants.BULLET_NUM += 1;
-        // Instantiate Collision Manager
-        bulletCollision = new managers.bulletCollision(clouds, scoreboard, bullets);
-        console.log("bullet num : " + constants.BULLET_NUM);
     }
     // play state Function
     function play() {
