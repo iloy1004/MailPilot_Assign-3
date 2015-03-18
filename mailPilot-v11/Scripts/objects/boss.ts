@@ -31,6 +31,7 @@ module objects {
             if (this.image.x <= 0) {
                 this.setPoint();
                 this.dx = this.dx * -1;
+
                 if (this.image.y >= this.stage.canvas.height) {
                     console.log("out of canvas bottom");
                     this.reset();

@@ -11,7 +11,7 @@
 
 
     var spriteSheetData = {
-        "images": ["assets/images/atlas1.png"],
+        "images": [""],
         "frames": [
             [5, 3, 193, 402], //plane
             [212, 6, 410,90], //instructionsButton
@@ -24,7 +24,7 @@
             [238, 411, 74, 62], //island
             [320, 411, 74, 62], //island2
             [406, 436, 21, 26], //heart
-            [438, 416, 53, 53], //poo
+            [439, 407, 61, 58], //poo
             [626, 16, 160, 64], //1shot
             [626, 92, 180, 123], //3shot
             [626, 226, 258, 242] //boss
