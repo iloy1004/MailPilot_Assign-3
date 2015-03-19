@@ -13,7 +13,6 @@ module states {
         ocean.update();
     }
 
-
     // Restart Game when Try Again Button is clicked
     export function tryAgainClicked(event: MouseEvent) {
         stage.removeChild(game);
@@ -23,8 +22,10 @@ module states {
         constants.CURRENT_PLANE_HP = constants.PLANE_HP;
         constants.CURRENT_BOSS_HP = constants.BOSS_HP;
         constants.CURRENT_SCORE = 0;
+        constants.engineSound.stop();
         currentState = constants.PLAY_STATE;
         changeState(currentState);
+        constants.engineSound.stop();
     }
 
     // Game Over Scene
@@ -38,6 +39,9 @@ module states {
 
         // Instantiate Game Objects
         ocean = new objects.Ocean(stage, game);
+
+        //sound create
+        constants.engineSound = createjs.Sound.play('lose', createjs.Sound.INTERRUPT_NONE, 0, 0, -1, 1, 0);
 
         // Show Cursor
         stage.cursor = "default";

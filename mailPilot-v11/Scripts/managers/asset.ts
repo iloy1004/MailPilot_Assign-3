@@ -3,10 +3,15 @@
     var assetManifest = [
         { id: "loading", src: "assets/images/loading.gif" },
         { id: "sky", src: "assets/images/sky1.png" },
-        { id: "engine", src: "assets/sounds/backsound.mp3" },
-        { id: "thunder", src: "assets/sounds/thunder.ogg" },
-        { id: "yay", src: "assets/sounds/yay.ogg" },
-        { id: "shot", src: "assets/sounds/shot2.wav" }
+        { id: "engine", src: "assets/sounds/bgm.mp3" },
+        { id: "playBGM", src: "assets/sounds/playBGM.mp3" },
+        { id: "thunder", src: "assets/sounds/shot2.wav" },
+        { id: "yay", src: "assets/sounds/Powerup.wav" },
+        { id: "shot", src: "assets/sounds/shot.wav" },
+        { id: "bossBGM", src: "assets/sounds/bossBGM.mp3" },
+        { id: "win", src: "assets/sounds/win.mp3" },
+        { id: "lose", src: "assets/sounds/lose.mp3" },
+        { id: "game-over", src: "assets/sounds/game-over.wav" }
     ];
 
 

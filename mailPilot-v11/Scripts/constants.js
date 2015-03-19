@@ -20,5 +20,7 @@ var constants;
     constants.PLANE_HP = 2000;
     constants.CURRENT_PLANE_HP = 2000;
     constants.CURRENT_BOSS_HP = 1000;
+    constants.POINT_SCORE = 1500; //the standard score for moving to boss stage
+    constants.engineSound;
 })(constants || (constants = {}));
 //# sourceMappingURL=constants.js.map

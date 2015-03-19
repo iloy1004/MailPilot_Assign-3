@@ -79,13 +79,6 @@
     <Content Include="assets\images\plane.png" />
     <Content Include="assets\images\sideplane.gif" />
     <Content Include="assets\images\sky1.png" />
-    <Content Include="assets\sounds\backsound.mp3" />
-    <Content Include="assets\sounds\backsound_king.mp3" />
-    <Content Include="assets\sounds\game-over.wav" />
-    <Content Include="assets\sounds\shot2.wav" />
-    <Content Include="assets\sounds\shot3.wav" />
-    <Content Include="assets\sounds\yay.ogg" />
-    <Content Include="assets\sounds\thunder.ogg" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -94,6 +87,15 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\sounds\bgm.mp3" />
+    <Content Include="assets\sounds\bossBGM.mp3" />
+    <Content Include="assets\sounds\game-over.wav" />
+    <Content Include="assets\sounds\lose.mp3" />
+    <Content Include="assets\sounds\playBGM.mp3" />
+    <Content Include="assets\sounds\Powerup.wav" />
+    <Content Include="assets\sounds\shot.wav" />
+    <Content Include="assets\sounds\shot2.wav" />
+    <Content Include="assets\sounds\win.mp3" />
     <Content Include="css\app.css" />
     <Content Include="css\normalize.css" />
     <Content Include="index.html" />

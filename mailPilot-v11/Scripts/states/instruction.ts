@@ -13,9 +13,12 @@ module states {
         stage.removeChild(game);
         game.removeAllChildren();
         game.removeAllEventListeners();
+        engineSound.stop();
         currentState = constants.MENU_STATE;
         changeState(currentState);
     }
+
+    var engineSound: createjs.SoundInstance;
 
     export function instructionState() {
         ocean.update();
@@ -47,6 +50,8 @@ module states {
         shot3 = new createjs.Sprite(managers.Assets.atlas, "3shot");
         boss = new createjs.Sprite(managers.Assets.atlas, "boss");
         poo = new createjs.Sprite(managers.Assets.atlas, "poo");
+
+        engineSound = createjs.Sound.play('engine', createjs.Sound.INTERRUPT_NONE, 0, 0, -1, 1, 0);
 
         // Declare new Game Container
         game = new createjs.Container();

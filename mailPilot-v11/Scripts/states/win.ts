@@ -12,8 +12,7 @@ module states {
         ocean.update();
     }
 
-
-    // Game Over Scene
+      // Game Over Scene
     export function win() {
         var gameOverLabel: objects.Label;
         var finalScoreLabel: objects.Label;
@@ -24,6 +23,9 @@ module states {
 
         // Instantiate Game Objects
         ocean = new objects.Ocean(stage, game);
+
+        //sound create
+        constants.engineSound = createjs.Sound.play('win', createjs.Sound.INTERRUPT_NONE, 0, 0, -1, 1, 0);
 
         // Show Cursor
         stage.cursor = "default";

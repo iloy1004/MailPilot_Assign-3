@@ -5,6 +5,7 @@ module objects {
         image: createjs.Sprite;
         stage: createjs.Stage;
         game: createjs.Container;
+        engineSound: createjs.SoundInstance;
         width: number;
         height: number;
         dy: number;
@@ -21,6 +22,8 @@ module objects {
             this.reset();
 
             game.addChild(this.image);
+
+            this.engineSound = createjs.Sound.play('bossBGM', createjs.Sound.INTERRUPT_NONE, 0, 0, -1, 1, 0);
         }
 
         update() {
@@ -82,6 +85,7 @@ module objects {
 
         destroy() {
             game.removeChild(this.image);
+            this.engineSound.stop();
         }
     }
 

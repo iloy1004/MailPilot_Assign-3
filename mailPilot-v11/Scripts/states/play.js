@@ -30,17 +30,19 @@ var states;
             plane.destroy();
             game.removeAllChildren();
             game.removeAllEventListeners();
+            var gameoverEff = createjs.Sound.play('game-over', createjs.Sound.INTERRUPT_NONE, 0, 0, 0, 1, 0);
             constants.CURRENT_SCORE = scoreboard.score;
             currentState = constants.GAME_OVER_STATE;
             changeState(currentState);
         }
-        if (scoreboard.score > 300) {
+        if (scoreboard.score > constants.POINT_SCORE) {
             stage.removeChild(game);
             for (var count = constants.CLOUD_NUM; count >= 0; count--) {
                 clouds[count].destroy();
             }
             constants.CURRENT_SCORE = scoreboard.score;
             constants.CURRENT_PLANE_HP = scoreboard.hp;
+            plane.engineSound.stop();
             currentState = constants.BOSS_STATE;
             changeState(currentState);
         }

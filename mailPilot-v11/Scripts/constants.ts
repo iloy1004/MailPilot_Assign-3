@@ -21,4 +21,7 @@
     export var PLANE_HP: number = 2000;
     export var CURRENT_PLANE_HP: number = 2000;
     export var CURRENT_BOSS_HP: number = 1000;
+    export var POINT_SCORE: number = 1500; //the standard score for moving to boss stage
+
+    export var engineSound: createjs.SoundInstance;
 }

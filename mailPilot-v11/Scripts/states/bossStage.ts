@@ -36,6 +36,11 @@ module states {
             game.removeAllChildren();
             game.removeAllEventListeners();
             constants.CURRENT_SCORE = bossScore.score;
+
+            bossBird.engineSound.stop();
+
+            var gameoverEff = createjs.Sound.play('game-over', createjs.Sound.INTERRUPT_NONE, 0, 0, 0, 1, 0);
+
             currentState = constants.GAME_OVER_STATE;
             changeState(currentState);
         }
@@ -47,6 +52,9 @@ module states {
             game.removeAllChildren();
             game.removeAllEventListeners();
             constants.CURRENT_SCORE = bossScore.score;
+
+            bossBird.engineSound.stop();
+
             currentState = constants.WIN_STATE;
             changeState(currentState);
         }
@@ -80,7 +88,7 @@ module states {
         ocean = new objects.Ocean(stage, game);
         plane = new objects.Plane(stage, game);
         plane.image.addEventListener("click", shoot);
-
+        plane.engineSound.stop();
 
 
         bossBird = new objects.Boss(stage, game);
