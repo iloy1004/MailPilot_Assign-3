@@ -42,6 +42,7 @@ module objects {
             }
         }
 
+        //divide reset 
         reset(image:number) {
 
             switch (image) {

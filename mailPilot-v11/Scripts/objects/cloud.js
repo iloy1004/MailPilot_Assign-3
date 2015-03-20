@@ -28,6 +28,7 @@ var objects;
                 this.reset(2);
             }
         };
+        //divide reset 
         Cloud.prototype.reset = function (image) {
             switch (image) {
                 case 0:

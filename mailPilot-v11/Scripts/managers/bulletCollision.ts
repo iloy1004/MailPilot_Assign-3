@@ -51,6 +51,7 @@ module managers {
             p3.x = cloud.image2.x;
             p3.y = cloud.image2.y;
 
+            //check the 2 kinds of enemies
             if (this.distance(p1, p2) < ((bullet.height / 2) + (cloud.height / 2))) {
                 createjs.Sound.play("shot");
                 this.scoreboard.score += 50;
