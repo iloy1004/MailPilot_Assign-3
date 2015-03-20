@@ -13,12 +13,11 @@ module states {
         stage.removeChild(game);
         game.removeAllChildren();
         game.removeAllEventListeners();
-        engineSound.stop();
+        constants.engineSound.stop();
         currentState = constants.MENU_STATE;
         changeState(currentState);
     }
 
-    var engineSound: createjs.SoundInstance;
 
     export function instructionState() {
         ocean.update();
@@ -51,7 +50,7 @@ module states {
         boss = new createjs.Sprite(managers.Assets.atlas, "boss");
         poo = new createjs.Sprite(managers.Assets.atlas, "poo");
 
-        engineSound = createjs.Sound.play('engine', createjs.Sound.INTERRUPT_NONE, 0, 0, -1, 1, 0);
+        constants.engineSound = createjs.Sound.play('engine', createjs.Sound.INTERRUPT_NONE, 0, 0, -1, 1, 0);
 
         // Declare new Game Container
         game = new createjs.Container();
@@ -113,7 +112,7 @@ module states {
         boss.y = 450;
         game.addChild(boss);
 
-        msgBoss = new createjs.Text("The boss bird. You need some special bullet!.\nYou will lose your hp when touch the boss!", "20px Maven Pro", "#000000");
+        msgBoss = new createjs.Text("The boss bird and poos. You can meet them when your score is over 1500! \nYou need some special bullet for victory, and your bullet will change automatically when you meet them.\nYou will lose your hp when touch the boss or poos. Be careful! They will fly to you!", "20px Maven Pro", "#000000");
         msgBoss.x = (stage.canvas.width / 6) + 180;
         msgBoss.y = 450;
         game.addChild(msgBoss);
@@ -122,11 +121,6 @@ module states {
         poo.x = (stage.canvas.width / 6) - 100;
         poo.y = 550;
         game.addChild(poo);
-
-        msgPoo = new createjs.Text("The poos. You can see those when you meet the boss.\nThey will fly to you! Shoot!", "20px Maven Pro", "#000000");
-        msgPoo.x = (stage.canvas.width / 6) + 180;
-        msgPoo.y = 550;
-        game.addChild(msgPoo);
 
         // Display Try Again Button
         backButton = new objects.Button(stage.canvas.width / 2, 650, "backButton");

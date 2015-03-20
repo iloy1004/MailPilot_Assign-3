@@ -40,6 +40,7 @@ module managers {
         private bulletAndCloud(cloud: objects.Cloud, bullet: objects.Bullet) {
             var p1: createjs.Point = new createjs.Point();
             var p2: createjs.Point = new createjs.Point();
+            var p3: createjs.Point = new createjs.Point();
 
             p1.x = bullet.image.x;
             p1.y = bullet.image.y;
@@ -47,13 +48,25 @@ module managers {
             p2.x = cloud.image.x;
             p2.y = cloud.image.y;
 
+            p3.x = cloud.image2.x;
+            p3.y = cloud.image2.y;
+
             if (this.distance(p1, p2) < ((bullet.height / 2) + (cloud.height / 2))) {
                 createjs.Sound.play("shot");
                 this.scoreboard.score += 50;
                 //bullet.reset();
                 game.removeChild(bullet.image);
                 constants.IS_BULLET = false;
-                cloud.reset();
+                cloud.reset(1);
+            }
+
+            if (this.distance(p1, p3) < ((bullet.height / 2) + (cloud.height / 2))) {
+                createjs.Sound.play("shot");
+                this.scoreboard.score += 50;
+                //bullet.reset();
+                game.removeChild(bullet.image);
+                constants.IS_BULLET = false;
+                cloud.reset(2);
             }
         }
 

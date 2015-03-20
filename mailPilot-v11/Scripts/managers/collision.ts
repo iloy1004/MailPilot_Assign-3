@@ -41,14 +41,24 @@ module managers {
         private planeAndCloud(cloud: objects.Cloud) {
             var p1: createjs.Point = new createjs.Point();
             var p2: createjs.Point = new createjs.Point();
+            var p3: createjs.Point = new createjs.Point();
             p1.x = this.plane.image.x;
             p1.y = this.plane.image.y;
             p2.x = cloud.image.x;
             p2.y = cloud.image.y;
+            p3.x = cloud.image2.x;
+            p3.y = cloud.image2.y;
+
             if (this.distance(p1, p2) < ((this.plane.height / 2) + (cloud.height / 2))) {
                 createjs.Sound.play("thunder");
                 this.scoreboard.hp -= 50;
-                cloud.reset();
+                cloud.reset(1);
+            }
+
+            if (this.distance(p1, p3) < ((this.plane.height / 2) + (cloud.height / 2))) {
+                createjs.Sound.play("thunder");
+                this.scoreboard.hp -= 50;
+                cloud.reset(2);
             }
         }
 

@@ -1,4 +1,22 @@
-﻿/// <reference path="../managers/asset.ts" />
+﻿/*
+ **************************************************************************
+ * Source file name : Index.html                                          *
+ * Author's name : Jihee Seo (300768856)                                  *
+ * Last Modified by : Jihee Seo (300768856)                               *
+ * Last Modified date : Feb 27, 2015                                      *
+ * Program description : This web game, by using create js, is the slot   *
+ *                       machine. User can enjoy the game to press spin   *
+ *                       button, and turn off the game to press power     *
+ *                       button. User can reset the game and change their *
+ *                       betting price in 2 ways as basic, max betting.   *
+ * Revision History : 1.4                                                 *
+ * Github address : https://github.com/iloy1004/Slot-Machine.git          *
+ *************************************************************************
+*/
+
+
+/// <reference path="../managers/asset.ts" />
+
 module objects {
     // Cloud class
     export class Boss {
